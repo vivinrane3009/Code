@@ -1,0 +1,385 @@
+/**
+ * @vivinran_assignment1
+ * @author  VIVIN DAYANAND RANE <vivinran@buffalo.edu>
+ * @version 1.0
+ *
+ * @section LICENSE
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of
+ * the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details at
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @section DESCRIPTION
+ *
+ * This contains the main function. Add further description here....
+vivinran_assignment1.c - Program to run file sharing application between two peers
+Created for CSE 589 Fall 2014 Programming Assignment 1
+Created on - 17th Sep 2014
+Control flow as follows -
+1. Socket Creation
+2. Binding
+3. Inserting
+4. Accepting connection
+5. Communication
+6. Termination of connection
+
+ */
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#include "../include/global.h"
+
+/**
+ * main function
+ *
+ * @param  argc Number of arguments
+ * @param  argv The argument list
+ * @return 0 EXIT_SUCCESS
+ */
+int main(int argc, char **argv)
+{
+	/*Start Here*/
+
+/* Personal Data  */
+printf("Name - VIVIN RANE\n");
+printf("UBITName - vivinran\n");
+printf("Ubit email address - vivinran@buffalo.edu\n");
+printf("I have read and understood the course academic integrity policy located at http://www.cse.buffalo.edu/faculty/dimitrio/courses/cse4589_f14/index.html#integrity\n\n");
+
+/* Help - Used from the PA1 guidelines */
+printf("/*          HELP           */ \n");
+printf("MYIP - Displays IP address of the process\n");
+printf("MYPORT - Displays port of the process\n");
+printf("REGISTER - This command is used by the client to register itself with the server and to get the IP and listening port numbers of all the peers currently registered with the server\n");
+printf("CONNECT - This command establishes a new TCP connection to the specified <destination> at the specified < port no>.\n");
+printf("LIST - Display a numbered list of all the connections this process is part of\n");
+printf("TERMINATE - This command will terminate the connection listed under the specified number when LIST is used to display all connections\n");
+printf("EXIT - Close all connections and terminate the process\n");
+printf("UPLOAD - Will upload file to the desired location\n");
+printf("DOWNPLOAD - Will download file from the specified location\n");
+
+/*  Defining variables  */
+
+struct addrinfo
+{
+	int AF_NET;
+	int SOCK_STREAM;
+	size_t ai_addrlen;
+	struct sockaddr *sockaddr_in;
+};
+
+struct sockaddr
+{
+	unsigned short sa_family;
+	char sa_data[14];
+};
+
+struct sockaddr_in
+{
+	short int sin_family;
+	unsigned short int sin_port;
+	struct in_addr sin_addr;
+	unsigned char sin_zero[8];
+};
+
+struct in_addr
+{
+	uint32_t s_addr;
+};
+
+struct sockaddr_storage
+{
+	sa_family_t ss_family;
+};
+
+/* struct sockaddr_in sa; 
+	inet_addr(AF_INET, "192.168.0.1", &(sa.sin_addr));
+*/
+
+
+char ip4[INET_ADDRSTRLEN];
+struct sockaddr_in sa;
+	/* inet_addr(AF_INET, &(sa.sin_addr, ip4, INET_ADDRSTRLEN)); */
+printf("The IPv4 address is: %s\n", ip4);
+
+/**
+*  Socket - used from recitation slides
+* IPV4 only
+*/
+int server_socket;
+// struct addrinfo hints, *res;
+// getaddrinfo("128.205.36.32", "4545", &hints, &res);
+server_socket = socket(AF_INET, SOCK_STREAM,0);
+
+/**	Listening Socket 
+*	if (server_socket <0)
+*		 return err_msg_ERR("Cannot create socket");
+*		 bzero(&server_addr, sizeof(server_addr));
+*		 server_addr.sin_family = AF_INET;
+*		 server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+*		 server_addr.sin_port = htons(port);
+*		 printf("Port = %d", ntohs(server_addr.sin_port));
+*/
+
+/**	Socket 0
+*	if (server_socket <0)
+*		 return err_msg_ERR("Cannot create socket");
+*		 bzero(&server_addr, sizeof(server_addr));
+*		 server_addr.sin_family = AF_INET;
+*		 server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+*		 server_addr.sin_port = htons(port);
+*		 printf("Port = %d", ntohs(server_addr.sin_port));
+*/
+
+/**	Socket 1
+*	if (server_socket <0)
+*		 return err_msg_ERR("Cannot create socket");
+*		 bzero(&server_addr, sizeof(server_addr));
+*		 server_addr.sin_family = AF_INET;
+*		 server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+*		 server_addr.sin_port = htons(port);
+*		 printf("Port = %d", ntohs(server_addr.sin_port));
+*/
+
+/**	Socket 2
+*	if (server_socket <0)
+*		 return err_msg_ERR("Cannot create socket");
+*		 bzero(&server_addr, sizeof(server_addr));
+*		 server_addr.sin_family = AF_INET;
+*		 server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+*		 server_addr.sin_port = htons(port);
+*		 printf("Port = %d", ntohs(server_addr.sin_port));
+*/
+
+/**	Socket 3
+*	if (server_socket <0)
+*		 return err_msg_ERR("Cannot create socket");
+*		 bzero(&server_addr, sizeof(server_addr));
+*		 server_addr.sin_family = AF_INET;
+*		 server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+*		 server_addr.sin_port = htons(port);
+*		 printf("Port = %d", ntohs(server_addr.sin_port));
+*/
+
+/**	Socket 4
+*	if (server_socket <0)
+*		 return err_msg_ERR("Cannot create socket");
+*		 bzero(&server_addr, sizeof(server_addr));
+*		 server_addr.sin_family = AF_INET;
+*		 server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+*		 server_addr.sin_port = htons(port);
+*		 printf("Port = %d", ntohs(server_addr.sin_port));
+*/
+
+/** Selection between Client and server
+*	char input
+*	printf("Please select Server or client:");
+*	scanf("%c %d\n", &Input, &port);
+*	Switch (input)
+*	case s:
+*
+*
+*	// Bind function
+* if(bind(server_port, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0 )
+* 	return err_msg_ERR("Bind failed");
+* struct addrinfo hints, *res;
+* 	int sockfd;
+* // first, load up address structs with getaddrinfo():
+* 	memset(&hints, 0, sizeof hints);
+*	 hints.ai_family = AF_UNSPEC; // use IPv4 or IPv6, whichever
+*	 hints.ai_socktype = SOCK_STREAM;
+* 	hints.ai_flags = AI_PASSIVE;
+* // fill in my IP for me
+* getaddrinfo(NULL, "3490", &hints, &res);
+* // make a socket:
+* sockfd = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
+// bind it to the port we passed in to getaddrinfo():
+* bind(sockfd, res->ai_addr, res->ai_addrlen);
+*
+* Listen
+* if(listen(server_backlog, BACKLOG) < 0)
+* {
+*	 fprintf(stderr, "Unable to listen to port %d", port );
+*	 int status;
+* 	struct addrinfo hints;
+* 	struct addrinfo *servinfo;
+* //will point to the results
+* 	memset(&hints, 0, sizeof hints); // make sure the struct is empty
+* 	hints.ai_family = AF_INET;
+* 	hints.ai_socktype = SOCK_STREAM; // TCP stream sockets
+* 	hints.ai_flags = AI_PASSIVE;
+* // fill in my IP for me
+* 	if ((status = getaddrinfo(NULL, "4322", &hints, &servinfo)) != 0) {
+* 	fprintf(stderr, "getaddrinfo error: %s\n", gai_strerror(status));
+* 	return -1;
+* }
+*
+*
+*
+*IO multiplexing with select
+*
+*FD_ZERO(&master_list);
+*FD_ZERO(&watch_list);
+*
+*head_socket=server_socket;
+*FD_SET(server_socket, master_list);
+*FD_SET(STDIN, &master_list);
+*
+*init_shell(host_type, port);
+*
+*while (TRUE)
+*{
+*        memcpy(&watch_list, &master_list, sizeof(master_list));
+*
+*        selret = select(head_socket + 1, &watch_list, NULL, NULL, NULL);
+*
+*        if(selret<0)
+*                return err_msg_ERR("select failed");
+*        if(selret>0)
+*             for(sock_index=0; sock_index <= head_index; sock_index+=1)
+*                {}
+*}
+*
+*
+*
+* ACCEPT
+*
+*
+* MYIP
+*
+*	printf("IP address:%s", ip_addr);
+*
+*
+*
+* MYPORT
+*
+*	printf("Port number:%d", port_num); 
+*
+*
+* LIST
+* The following printf will print out one host. Repeat this printf statement to print all hosts  
+* host_id: integer with host’s assigned ID 
+* hostname: null­terminated char array containing hostname 
+* ip_addr: null­terminated char array storing IP 
+* port_num: integer storing listening port num 
+* 	printf("%­5d%­35s%­20s%­8d\n", host_id, hostname, ip_addr, port_num); 
+*
+*
+*
+*
+*
+*break;
+*/
+/*
+*case C:
+
+*
+*
+*	// Bind function
+* if(bind(server_port, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0 )
+* 	return err_msg_ERR("Bind failed");
+* struct addrinfo hints, *res;
+* 	int sockfd;
+* // first, load up address structs with getaddrinfo():
+* 	memset(&hints, 0, sizeof hints);
+*	 hints.ai_family = AF_UNSPEC; // use IPv4 or IPv6, whichever
+*	 hints.ai_socktype = SOCK_STREAM;
+* 	hints.ai_flags = AI_PASSIVE;
+* // fill in my IP for me
+* getaddrinfo(NULL, "3490", &hints, &res);
+* // make a socket:
+* sockfd = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
+// bind it to the port we passed in to getaddrinfo():
+* bind(sockfd, res->ai_addr, res->ai_addrlen);
+*
+* Listen
+* if(listen(server_backlog, BACKLOG) < 0)
+* {
+*	 fprintf(stderr, "Unable to listen to port %d", port );
+*	 int status;
+* 	struct addrinfo hints;
+* 	struct addrinfo *servinfo;
+* //will point to the results
+* 	memset(&hints, 0, sizeof hints); // make sure the struct is empty
+* 	hints.ai_family = AF_INET;
+* 	hints.ai_socktype = SOCK_STREAM; // TCP stream sockets
+* 	hints.ai_flags = AI_PASSIVE;
+* // fill in my IP for me
+* 	if ((status = getaddrinfo(NULL, "4322", &hints, &servinfo)) != 0) {
+* 	fprintf(stderr, "getaddrinfo error: %s\n", gai_strerror(status));
+* 	return -1;
+* }
+*
+*
+*
+*IO multiplexing with select
+*
+*FD_ZERO(&master_list);
+*FD_ZERO(&watch_list);
+*
+*head_socket=server_socket;
+*FD_SET(server_socket, master_list);
+*FD_SET(STDIN, &master_list);
+*
+*init_shell(host_type, port);
+*
+*while (TRUE)
+*{
+*        memcpy(&watch_list, &master_list, sizeof(master_list));
+*
+*        selret = select(head_socket + 1, &watch_list, NULL, NULL, NULL);
+*
+*        if(selret<0)
+*                return err_msg_ERR("select failed");
+*        if(selret>0)
+*             for(sock_index=0; sock_index <= head_index; sock_index+=1)
+*                {}
+*}
+*
+*
+*
+* ACCEPT
+*
+*
+* MYIP
+*
+*	printf("IP address:%s", ip_addr);
+*
+*
+*
+* MYPORT
+*
+*	printf("Port number:%d", port_num); 
+*
+*
+* LIST
+* The following printf will print out one host. Repeat this printf statement to print all hosts  
+* host_id: integer with host’s assigned ID 
+* hostname: null­terminated char array containing hostname 
+* ip_addr: null­terminated char array storing IP 
+* port_num: integer storing listening port num 
+* 	printf("%­5d%­35s%­20s%­8d\n", host_id, hostname, ip_addr, port_num); 
+*
+*
+*
+*
+*
+*break;
+*/
+
+	return 0;
+}
+
+
